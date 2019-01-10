@@ -13,8 +13,18 @@ article:hover {
 }
 header{
     position: fixed;
-    width: 100%;
+    width: 600px;
 }
 section{
-    padding-top: 450px;
+    padding-top: 320px;
+}
+/*--breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px*/
+@media screen and (max-width: 576px){
+    header{
+        width: 100%;
+    }
 }
