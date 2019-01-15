@@ -1,0 +1,47 @@
+@charset "UTF-8";
+/* CSS Document */
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black');
+/*   font-family: 'Archivo Black', sans-serif; */
+.font1{
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 25px;
+    line-height: 60px;
+    letter-spacing: 9px;
+}
+#title{
+    margin-top: 72px;
+}
+#main{
+    height: 100vh;
+    background-color: #151515;
+}
+#col1, #col2{
+    height: 100vh;
+}
+#col2{
+    background-image: url('http://images.cityhdwallpapers.com/2014/3/4/Colourful%20Billboard%20at%20city%20street%20of%20New%20York.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#col2:after{
+    
+  content: "";
+  display: block;
+  position: absolute; /* could also be absolute */ 
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(225,38,228,0.45);
+
+}
+footer i{
+    font-size: 25px;
+    margin-right: 10px;
+}
+footer i:hover{
+    color: #C038FD;
+}
