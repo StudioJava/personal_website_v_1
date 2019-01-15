@@ -33,6 +33,9 @@
         <ul>
           <li class="font-italic small" v-for="list in details">{{ list }} </li>
         </ul>
+          <div v-for="variant in variants" v-bind:key="variant.variantId">
+          <p v-on:mouseover="updateProdut(variant.variantImage)" >{{ variant.variantColor}} </p>
+          </div>
          <!-- Cart -->
           <div class="wrapper">
               <ul class="list-group">
