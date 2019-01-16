@@ -29,6 +29,16 @@ var app = new Vue({
     methods:{
         addToCart: function(){
             this.cart += 1
+            if(this.cart> 0){
+                document.getElementById('messageDisplay').innerHTML = '';
+            }
+        },
+        removeCart: function(){
+            this.cart -= 1
+           if(this.cart < 1){
+               document.getElementById('messageDisplay').innerHTML = 'Your car is empty';
+               this.cart = 0;
+           }
         },
         updateProdut: function(variantImage){
             this.image = variantImage;
