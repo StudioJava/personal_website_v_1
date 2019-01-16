@@ -22,7 +22,8 @@
 <!-- body code goes here --> 
           <div  class="container">
          <div class="col-12 mt-5">
-             <button class="btn btn-danger hvr-sweep-to-right rounded-0 border-0">Click Me</button>
+             <button id="btn1" class="btn btn-danger  rounded-0 border-0">Click Me</button>
+              <button id="btn2" class="btn btn-danger  rounded-0 border-0">Click Me</button>
              
               </div>
           </div>
@@ -34,7 +35,13 @@
 <script src="../js/popper.min.js"></script> 
 <script src="../js/bootstrap-4.0.0.js"></script> 
 <script>
-      var ourRequest = new XMLHttpRequest();
+    $( function(){
+        $('button').hover(function(){
+            $('button').append('<i class="fas fa-arrow-right"></i>');
+        });
+    });
+    
+     /* var ourRequest = new XMLHttpRequest();
 var url = 'data.json';
 
 ourRequest.open('GET',url);
@@ -43,7 +50,7 @@ ourRequest.onload = function(){
     
   console.log(data);
 }
-ourRequest.send();
+ourRequest.send();*/
 //=========================
       </script>
 </body>

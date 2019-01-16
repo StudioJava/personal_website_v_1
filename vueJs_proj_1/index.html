@@ -28,7 +28,7 @@
       <div >
         <h1>{{product}}</h1>
         <p>{{ description}}</p>
-        <p><span>{{ inventory }}</span> Items left!! </p>
+        <p><span>{{ inventory - cart }}</span> Items left!! </p>
         <p v-show="inStock">In Stock</p>
           <div v-for="variant in variants" v-bind:key="variant.variantId">
             
