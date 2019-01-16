@@ -34,6 +34,7 @@
           <li class="font-italic small" v-for="list in details">{{ list }} </li>
         </ul>
           <div v-for="variant in variants" v-bind:key="variant.variantId">
+               <h4 class="alert-danger p-2 small">Select Color</h4>
           <p v-on:click="updateProdut(variant.variantImage)" ><input class="mr-3" type="radio" name="color"> {{ variant.variantColor}} </p>
           </div>
           <div>
