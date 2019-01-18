@@ -6,7 +6,7 @@ var app = new Vue({
         description:'Thermic material created from the best wool in the world.',
         image:'images/vmSocks-green-onWhite.jpg',
         link:'https://vuejs.org/',
-        inStock:false,
+        inStock:true,
         onSale:true,
         inventory:30,
         details:["80% cotton", "20% polyester","Gender-neutral"],

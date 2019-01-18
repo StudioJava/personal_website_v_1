@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payroll Program</title>
+<!-- Bootstrap -->
+<link href="../css/bootstrap-4.0.0.css" rel="stylesheet">
+    <style>
+        body{
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<!-- body code goes here -->
+<div class="container pt-3">
+    <div class="row">
+    <div class="col-sm-12">
+        <h1 class="lead alert-warning p-3 rounded">Payroll Program with JavaScript</h1>
+        </div>
+    </div>
+  <div class="row">
+    <div class="col-sm-12 d-flex flex-column  align-items-center pt-2">
+      <div class="input-group mb-3 w-50 ">
+        <div class="input-group-prepend "> <span class="input-group-text" id="basic-addon1">hrs worked</span> </div>
+        <input type="number" class="form-control border-bottom border-top-0 border-right-0 rounded-0" placeholder="enter hrs"  aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+    </div>
+      <div class="col-sm-12 d-flex flex-column  align-items-center pt-2">
+      <div class="input-group mb-3 w-50 ">
+        <div class="input-group-prepend "> <span class="input-group-text" id="basic-addon2">hrl Pay Rate</span> </div>
+        <input type="number" class="form-control border-bottom border-top-0 border-right-0 rounded-0" placeholder="enter amt"  aria-label="Username" aria-describedby="basic-addon2">
+      </div>
+    </div>
+      <div class="col-sm-12 d-flex flex-column  align-items-center pt-2 pb-4">
+      <button class="btn btn-danger">Print Report</button>
+    </div>
+  </div>
+     <div class="row">
+    <div class="col-sm-12">
+        <h1 class="lead alert-info p-3 rounded text-center">Payroll Report</h1>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="../js/jquery-3.2.1.min.js"></script> 
+
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="../js/popper.min.js"></script> 
+<script src="../js/bootstrap-4.0.0.js"></script> 
+<script>
+      let data = {
+          amount: function(){
+              alert('works');
+          }
+      }
+      </script>
+</body>
+</html>

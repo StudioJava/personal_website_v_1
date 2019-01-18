@@ -29,10 +29,18 @@
         <h1>{{product}}</h1>
         <p>{{ description}}</p>
         <p><span>{{ inventory - cart }}</span> Items left!! </p>
-        <p v-show="inStock">In Stock</p>
-          <div v-for="variant in variants" v-bind:key="variant.variantId">
+<p v-if="inStock">In Stock</p>
+<p v-else :class="{outOfStock: !inStock}">Out of Stock</p>
+       <!-- <p v-show="inStock">In Stock</p>-->
+          <h4 class="alert-danger p-2 small">Hover Selected Color</h4>
+          <div class="box-color "
+        v-for="variant in variants" 
+           :key="variant.variantId" 
+            :style="{ backgroundColor:variant.variantColor}"
+            @mouseover="updateProdut(variant.variantImage)"
+               >
             
-          <p v-on:click="updateProdut(variant.variantImage)" ><input class="mr-3" type="radio" name="color"> {{ variant.variantColor}} </p>
+         <!-- <p v-on:click="updateProdut(variant.variantImage)" ><input class="mr-3" type="radio" name="color"> {{ variant.variantColor}} </p>-->
           </div>
         <h5 v-if="onSale" class="alert-warning p-2 text-center">On Sale</h5>
         <!-- <p v-else-if="inventory <=10 && inventory > 0">Almost Sold Out!! </p>
@@ -40,7 +48,7 @@
         <ul>
           <li class="font-italic small" v-for="list in details">{{ list }} </li>
         </ul>
-             <h4 class="alert-danger p-2 small">Select Color</h4>
+             
           
           <div>
           
@@ -50,7 +58,7 @@
               <ul class="list-group">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 
-                  <button v-on:click="addToCart" class="btn btn-sm btn-danger"><i class="far fa-plus-square"></i></button>
+                  <button v-on:click="addToCart" :disabled="!inStock" class="btn btn-sm btn-danger"><i class="far fa-plus-square"></i></button>
                    <button v-on:click="removeCart " class="btn btn-sm btn-danger"><i class="far fa-minus-square"></i></button>
                    <span class="badge badge-primary badge-pill">{{ cart }} </span>
                   </li>
