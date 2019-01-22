@@ -36,11 +36,9 @@
       </div>
         </form>
     </div>
-      <div class="col-sm-12 d-flex flex-column  align-items-center pt-2">
-      
-    </div>
+     
       <div class="col-sm-12 d-flex flex-column  align-items-center pt-2 pb-4">
-      <button onClick="payroll.payData()" class="btn btn-danger">Print Report</button>
+      <button onClick="printData()" class="btn btn-danger">Print Report</button>
     </div>
   </div>
      <div class="row">
@@ -59,18 +57,38 @@
 <script>
     /*First input input id="hrsWorked"
       Second input input id="payRate" */
-    const govDeductions = 0.15, 
-          personalDecuctions = 0.10,
-          pensionContribution = 0.05;
-      let payroll = {
-          payData: function(){
-              let hrsWorked = document.querySelector("#hrsWorked").value;
-              let payRate = document.querySelector("#payRate").value;
-              document.getElementById("form").reset();
-            alert( hrsWorked * payRate);
-              
-          }
-      }
+    const goverment = 0.15, 
+          personal = 0.10,
+          pension = 0.05;
+    
+    
+    function payrollData(){
+         let hrsWorked = document.querySelector("#hrsWorked").value;
+         let payRate = document.querySelector("#payRate").value;    
+        return hrsWorked * payRate;
+    }
+    function resetForm(){
+         document.getElementById("form").reset();
+    }
+    function totalGovDeductions(){
+        return payrollData()*goverment;
+    }
+    function totalPersDeductions(){
+        return payrollData()*personal;
+    }
+    function totalPensionDeductions(){
+        var total =  payrollData() - totalPersDeductions();
+        return total * pension;
+    }
+    function printData(){
+       console.log(`Gross Pay:$ ${payrollData().toLocaleString('en')}`);
+      console.log(`Goverment Deductions:$ ${totalGovDeductions().toLocaleString('en')}`);
+        console.log(`Personal Deductions:$ ${totalPersDeductions().toLocaleString('en')}`);
+        console.log(`Pension Duductions:$ ${totalPensionDeductions().toLocaleString('en')}`)
+         resetForm();
+    }
+     
+     
       </script>
 </body>
 </html>
