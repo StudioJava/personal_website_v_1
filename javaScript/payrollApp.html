@@ -43,8 +43,15 @@
   </div>
      <div class="row">
     <div class="col-sm-12">
-        <h1 class="lead alert-info p-3 rounded text-center">Payroll Report</h1>
+<h1 class="lead alert-info p-3 rounded text-center">Payroll Report</h1>
         </div>
+         <div style="display: none" id="content" class="col-sm-12 ">
+        <p class="alert-dismissible">Gross Pay:$ <span id="grossPay"></span></p>
+         <p class="alert-danger">Goverment Deductions:$ <span id="govermentDeductions"></span></p>
+         <p class="alert-primary">Personal Deductions:$ <span id="personalDeductions"></span></p>
+        <p class="alert-warning">Pension Deductions:$ <span id="pensionDeductions"></span></p>
+              <p class="alert-dark ">Net Pay:$ <span id="netPay"></span></p>
+         </div>
     </div>
 </div>
 
@@ -55,11 +62,13 @@
 <script src="../js/popper.min.js"></script> 
 <script src="../js/bootstrap-4.0.0.js"></script> 
 <script>
+  
     /*First input input id="hrsWorked"
       Second input input id="payRate" */
     const goverment = 0.15, 
           personal = 0.10,
           pension = 0.05;
+   
     
     
     function payrollData(){
@@ -80,11 +89,16 @@
         var total =  payrollData() - totalPersDeductions();
         return total * pension;
     }
+    function netPay(){
+        return payrollData() - totalGovDeductions() - totalPersDeductions() - totalPensionDeductions();
+    }
     function printData(){
-       console.log(`Gross Pay:$ ${payrollData().toLocaleString('en')}`);
-      console.log(`Goverment Deductions:$ ${totalGovDeductions().toLocaleString('en')}`);
-        console.log(`Personal Deductions:$ ${totalPersDeductions().toLocaleString('en')}`);
-        console.log(`Pension Duductions:$ ${totalPensionDeductions().toLocaleString('en')}`)
+    document.querySelector("#grossPay").innerHTML = payrollData().toLocaleString('en');
+    document.querySelector("#govermentDeductions").innerHTML = totalGovDeductions().toLocaleString('en');
+    document.querySelector("#personalDeductions").innerHTML =  totalPersDeductions().toLocaleString('en');
+    document.querySelector("#pensionDeductions").innerHTML =   totalPensionDeductions().toLocaleString('en');
+    document.querySelector("#netPay").innerHTML = netPay().toLocaleString('en');
+    document.querySelector("#content").style.display ="block";
          resetForm();
     }
      
