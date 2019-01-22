@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Meta descrition -->
+<!-- Provide a short description of the page. -->
+<meta name="description" content="Projectile motion is one of the most studied motions in Classical Physics.  Knowledge of projectile motion allow us to perform many functions such as throwing a football, archery, etc.  In this scenario, you will create a javaScript program that will receive the initial velocity and the angle and determine the flight path information for the projectile.
+">
+
+<!-- ______- -->
+<title>Projectile Motion Program</title>
+
+<!-- Bootstrap -->
+<link href="../css/bootstrap-4.0.0.css" rel="stylesheet">
+<style>
+body {
+    max-width: 800px;
+    margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<!-- body code goes here -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 alert-warning p-2">
+      <h1 class="lead ">Projectile Motion Program</h1>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-12">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1">Time of flight</span> </div>
+        <input type="text" class="form-control" placeholder="(t)" aria-label="timeofflight" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon2">Maximum height</span> </div>
+        <input type="text" class="form-control" placeholder="(h)" aria-label="timeofflight" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon3">Horizontal Range</span> </div>
+        <input type="text" class="form-control" placeholder="(r)" aria-label="timeofflight" aria-describedby="basic-addon1">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 alert-info pt-2 text-center">
+      <h4 class="lead">Graph Results</h4>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="../js/jquery-3.2.1.min.js"></script> 
+
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="../js/popper.min.js"></script> 
+<script src="../js/bootstrap-4.0.0.js"></script> 
+<script>
+      /* Time of Flight (T)
+         Maximum Height (H)
+         Horizontal Range (R)
+         Initial Velocity Vx
+*/
+       //Convert rad to deg automatically
+
+       (function (R) {
+  Math.cosd = function(d) { return Math.cos(d * R); };
+  Math.sind = function(d) { return Math.sin(d * R); };
+  Math.tand = function(d) { return Math.tan(d * R); };
+})(Math.PI / 180);
+          
+    function timeOfFlight(initVelocity,angle){
+    return ((2*initVelocity * Math.sind(angle))/9.8).toFixed(2);
+    }
+    /*_____________-*/
+    function maxHeight(initVelocity,angle){
+    var a = Math.pow(initVelocity,2);
+    var b = Math.pow(Math.sind(angle),2);
+    var c = 2 * 9.8;
+    return (a * b / c).toFixed(2);
+    }
+    /*_______________*/
+    function horizontalRange(initVelocity,angle){
+    var a = Math.pow(initVelocity,2);
+    var b = angle * 2;
+    var c = Math.sind(b);
+    var d = 9.8;
+    return (a * c / d).toFixed(2);
+    }
+    /*________________ Coordinates begining*/
+    let xAxisBegin = 0;
+    let yAxisBegin = 0;
+    /*____ coordinates x 1/4*/
+    function xAxisQuarter(initVelocity,degree){
+       return (horizontalRange(initVelocity,degree) / 4).toFixed(1);
+    } 
+    /*______Coordinates y 1/4*/
+    function yAxisQuarter(initVelocity,angle){
+       return (xAxisQuarter(initVelocity,angle) * Math.cosd(angle) / 2).toFixed(1);   
+    }
+    /*_______ Coordinate X 1/2*/
+    function xAxisHalf(initVelocity,angle){
+        return (horizontalRange(initVelocity,angle)/ 2).toFixed(1);
+    }
+    /*_________ Coordinate Y 1/2*/
+    function yAxisHalf(initVelocity,angle){
+        return maxHeight(initVelocity,angle);
+    }
+    /*_______Coordinates X 3/4 time*/
+    function xAxisThreeQuarters(initVelocity,angle){
+        return horizontalRange(initVelocity,angle) - xAxisQuarter(initVelocity,angle);
+    }
+    /*________Coordinat Y 3/4 time*/
+    function yAxisThreeQuarters(initVelocity,angle){
+         return (xAxisQuarter(initVelocity,angle) * Math.cosd(angle) / 2).toFixed(1); 
+    }
+    /*_______ Coordinate X end*/
+    function xAxisEnd(initVelocity,angle){
+         return horizontalRange(initVelocity,angle);
+    }
+    /*_________Coordinate Y end*/
+    function yAxisEnd(){
+       var a = 0;
+        return a;
+    }
+    
+    
+    console.log(`Time of Flight: ${timeOfFlight(98,30)} meters/sec`);
+    console.log (`Maximum Height: ${maxHeight(98,30)} meters`);
+    console.log(`Horizontal Range: ${horizontalRange(98,30)} meters`);
+    console.log(`X axis at quarter time ${xAxisQuarter(98,30)}`);
+    
+    console.log(Math.cosd(30));
+    console.log(`Y axis at quarter time ${yAxisQuarter(98,30)}`);
+    console.log(`X axis at half time ${xAxisHalf(98,30)}`);
+    console.log(`Y axis at half time ${yAxisHalf(98,30)}`);
+    console.log(`X axis at Three quarter time ${xAxisThreeQuarters(98,30)}`);
+    console.log(`Y axis at three quarter time ${yAxisThreeQuarters(98,30)}`);
+    console.log(`X axis end time ${xAxisEnd(98,30)}`);
+    console.log(`Y axis end time ${yAxisEnd()}`)
+     
+         // console.log((Math.pow(20,2))*(Math.pow(Math.sind(50),2))/2*9.8);
+         
+      //console.log(((2*20) * Math.sin(50))/9.8);
+          
+          
+      </script>
+</body>
+</html>
