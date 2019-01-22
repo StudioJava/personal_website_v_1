@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Payroll Program</title>
-<!-- Bootstrap -->
-<link href="../css/bootstrap-4.0.0.css" rel="stylesheet">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Payroll Program</title>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap-4.0.0.css" rel="stylesheet">
     <style>
-        body{
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        #content p {
-            padding-left: 10px;
-        }
-    </style>
-</head>
-<body>
+body {
+    max-width: 800px;
+    margin: 0 auto;
+}
+#content p {
+    padding-left: 10px;
+}
+</style>
+    </head>
+    <body>
 <!-- body code goes here -->
 <div class="container pt-3">
-    <div class="row">
+      <div class="row">
     <div class="col-sm-12">
-        <h1 class="lead alert-warning p-3 rounded">Payroll Program with JavaScript</h1>
+          <h1 class="lead alert-warning p-3 rounded">Payroll Program with JavaScript</h1>
         </div>
-    </div>
-  <div class="row">
-    <div class="col-sm-12 d-flex flex-column  align-items-center pt-2">
-        
-     <form id="form" >
-         <div class="input-group mb-3 w-75 ">
-        <div  class="input-group-prepend "> <span class="input-group-text" id="basic-addon1">hrs worked</span> </div>
-        <input id="hrsWorked" type="number" class="form-control border-bottom border-top-0 border-right-0 rounded-0" placeholder="enter hrs"  aria-label="Username" aria-describedby="basic-addon1">
-      </div>
-        <div class="input-group mb-3 w-75 ">
-        <div class="input-group-prepend "> <span class="input-group-text" id="basic-addon2">hrl Pay Rate</span> </div>
-        <input id="payRate" type="number" class="form-control border-bottom border-top-0 border-right-0 rounded-0" placeholder="enter amt"  aria-label="Username" aria-describedby="basic-addon2">
-      </div>
-        </form>
-    </div>
-     
-      <div class="col-sm-12 d-flex flex-column  align-items-center pt-2 pb-4">
-      <button onClick="printData()" class="btn btn-danger">Print Report</button>
-    </div>
   </div>
-     <div class="row">
-    <div class="col-sm-12">
-<h1 class="lead alert-info p-3 rounded text-center">Payroll Report</h1>
+      <div class="row">
+    <div class="col-sm-12 d-flex flex-column  align-items-center pt-2">
+          <form id="form" >
+        <div class="input-group mb-3 w-75 ">
+              <div  class="input-group-prepend "> <span class="input-group-text" id="basic-addon1">hrs worked</span> </div>
+              <input id="hrsWorked" type="number" class="form-control border-bottom border-top-0 border-right-0 rounded-0" placeholder="enter hrs"  aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        <div class="input-group mb-3 w-75 ">
+              <div class="input-group-prepend "> <span class="input-group-text" id="basic-addon2">hrl Pay Rate</span> </div>
+              <input id="payRate" type="number" class="form-control border-bottom border-top-0 border-right-0 rounded-0" placeholder="enter amt"  aria-label="Username" aria-describedby="basic-addon2">
+            </div>
+      </form>
         </div>
-         <div style="display: none" id="content" class="col-sm-12 ">
-        <p class="alert-dismissible">Gross Pay:$ <span id="grossPay"></span></p>
-         <p class="alert-danger">Goverment Deductions:$ <span id="govermentDeductions"></span></p>
-         <p class="alert-primary">Personal Deductions:$ <span id="personalDeductions"></span></p>
-        <p class="alert-warning">Pension Deductions:$ <span id="pensionDeductions"></span></p>
-              <p class="alert-dark ">Net Pay:$ <span id="netPay"></span></p>
-         </div>
+    <div class="col-sm-12 d-flex flex-column  align-items-center pt-2 pb-4">
+          <button onClick="printData()" class="btn btn-danger">Print Report</button>
+        </div>
+  </div>
+      <div class="row">
+    <div class="col-sm-12">
+          <h1 class="lead alert-info p-3 rounded text-center">Payroll Report</h1>
+        </div>
+    <div style="display: none" id="content" class="col-sm-12 ">
+          <p class="alert-dismissible">Gross Pay:$ <span id="grossPay"></span></p>
+          <p class="alert-danger">Goverment Deductions:$ <span id="govermentDeductions"></span></p>
+          <p class="alert-primary">Personal Deductions:$ <span id="personalDeductions"></span></p>
+          <p class="alert-warning">Pension Deductions:$ <span id="pensionDeductions"></span></p>
+          <p class="alert-dark ">Net Pay:$ <span id="netPay"></span></p>
+        </div>
+  </div>
     </div>
-</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script src="../js/jquery-3.2.1.min.js"></script> 
@@ -102,7 +100,7 @@
     document.querySelector("#pensionDeductions").innerHTML =   totalPensionDeductions().toLocaleString('en');
     document.querySelector("#netPay").innerHTML = netPay().toLocaleString('en');
     document.querySelector("#content").style.display ="block";
-         resetForm();
+    resetForm();
     }
      
      
