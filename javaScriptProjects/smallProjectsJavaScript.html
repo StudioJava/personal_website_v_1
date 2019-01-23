@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Untitled Document</title>
+    <!-- Bootstrap -->
+	<link href="../css/bootstrap-4.0.0.css" rel="stylesheet">
+	
+  </head>
+  <body>
+  	<!-- body code goes here -->
+      <div class="container">
+      <div class="row">
+          <div class="col sm-12 pt-2 alert-info">
+              <h3 class="lead">Find how many vowels in a word.</h3>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend"> <span class="input-group-text" id="basic-wordcount">Enter word</span> </div>
+              <input id="input" type="text" class="form-control" placeholder="word.." aria-label="wordcount" aria-describedby="basic-wordcount">
+            </div>
+              <button onClick="countVowels()" class="btn btn-danger mb-3">Click</button>
+              <p id="results">Your results...</p>
+          </div>
+          </div>
+      </div>
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="../js/jquery-3.2.1.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../js/popper.min.js"></script> 
+	<script src="../js/bootstrap-4.0.0.js"></script>
+      <script>
+    
+      
+      function countVowels(){
+          let str = document.getElementById("input").value;
+          var count = 0;
+          for(var i = 0; i < str.length;i++){
+              switch(str[i]){
+                  case "a":
+                  case "e":
+                  case "i":
+                  case "o":
+                  case "u":
+                    count ++;
+                      break;
+              }
+              
+               if(count = 0 && count > 1){
+                   document.getElementById("results").innerHTML = `There are ${count} vowels in the word ${str}`;
+               }else{
+                   document.getElementById("results").innerHTML = `There is ${count} vowel in the word ${str}`;
+               }
+          }
+          
+          
+      }
+      </script>
+  </body>
+</html>
