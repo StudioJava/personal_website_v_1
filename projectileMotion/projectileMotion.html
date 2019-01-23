@@ -32,24 +32,38 @@ body {
   <div class="row mt-2">
     <div class="col-sm-12">
       <div class="input-group mb-3">
-        <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1">Time of flight</span> </div>
-        <input type="text" class="form-control" placeholder="(t)" aria-label="timeofflight" aria-describedby="basic-addon1">
+        <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1">Initial Velocity</span> </div>
+        <input id="initVelocityInput" type="number" class="form-control" placeholder="(v)" aria-label="timeofflight" aria-describedby="basic-addon1">
       </div>
       <div class="input-group mb-3">
-        <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon2">Maximum height</span> </div>
-        <input type="text" class="form-control" placeholder="(h)" aria-label="timeofflight" aria-describedby="basic-addon1">
+        <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon2">Angle of Launch</span> </div>
+        <input id="angleInput" type="number" class="form-control" placeholder="(°)" aria-label="timeofflight" aria-describedby="basic-addon1">
       </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon3">Horizontal Range</span> </div>
-        <input type="text" class="form-control" placeholder="(r)" aria-label="timeofflight" aria-describedby="basic-addon1">
-      </div>
+        <div class="col-sm-12 mt-2 mb-2">
+        <button onClick="results()" class="btn btn-info w-50">Display Results</button>
+        </div>
+      
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-12 alert-info pt-2 text-center">
+    <div id="displayRow" class="row">
+    <div class="col-sm-12 alert-danger pt-2 text-center">
+      <h4 class="lead">Results</h4>
+    </div>
+    <div id="displayResults" class="col-sm-12 alert-success">
+        <p>Initial Velocity: <span id="initialVelocity"></span></p>
+        <p>Angle of Launch: <span id="angleOfLaunch"></span></p>
+        <p>Time of flight: <span id="timeOfFlight"></span></p>
+        <p>Maximum Height: <span id="maxHeight"></span></p>
+        <p>Horizontal Range: <span id="horizontalRange"></span></p>
+        </div>
+        <div class="col-sm-12 alert-info pt-2 text-center">
       <h4 class="lead">Graph Results</h4>
     </div>
+      <div class="col-sm-12 p-0">
+      <div id="graph" ></div>
+      </div>
   </div>
+  
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
@@ -57,7 +71,9 @@ body {
 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
 <script src="../js/popper.min.js"></script> 
-<script src="../js/bootstrap-4.0.0.js"></script> 
+<script src="../js/bootstrap-4.0.0.js"></script>
+    <!-- Graph JS -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
       /* Time of Flight (T)
          Maximum Height (H)
@@ -65,7 +81,10 @@ body {
          Initial Velocity Vx
 */
        //Convert rad to deg automatically
-
+    document.getElementById("displayRow").style.display = "none";
+function showDisplay(){
+    document.getElementById("displayRow").style.display = "block";
+}
        (function (R) {
   Math.cosd = function(d) { return Math.cos(d * R); };
   Math.sind = function(d) { return Math.sin(d * R); };
@@ -126,25 +145,55 @@ body {
        var a = 0;
         return a;
     }
+    /*__________________________________________ Event Handler
+    <p>Time of flight: <span id="timeOfFlight"></span></p>
+        <p>Maximum Height: <span id="maxHeight"></span></p>
+        <p>Horizontal Range: <span id="horizontalRange"></span></p>
+    */
+    
+    function results(){
+ let initVelocity = document.getElementById("initVelocityInput").value;
+ let angle = document.getElementById("angleInput").value;
+ document.getElementById("initialVelocity").innerHTML = `${initVelocity} m/s`;
+ document.getElementById("angleOfLaunch").innerHTML = `${angle} &deg; `;
+document.getElementById("timeOfFlight").innerHTML = `${timeOfFlight(initVelocity,angle)} sec`;
+document.getElementById("maxHeight").innerHTML = `${maxHeight(initVelocity,angle)} meters`; 
+ document.getElementById("horizontalRange").innerHTML = `${horizontalRange(initVelocity,angle)} meters`;       
+    /*Display*/
+        showDisplay();
     
     
-    console.log(`Time of Flight: ${timeOfFlight(98,30)} meters/sec`);
-    console.log (`Maximum Height: ${maxHeight(98,30)} meters`);
-    console.log(`Horizontal Range: ${horizontalRange(98,30)} meters`);
-    console.log(`X axis at quarter time ${xAxisQuarter(98,30)}`);
+    /*_______________________________________Event Handler Graph*/
+    var x1 = xAxisQuarter(initVelocity,angle);
+    var x2 = xAxisHalf(initVelocity,angle);
+    var x3 = xAxisThreeQuarters(initVelocity,angle);
+    var x4 = xAxisEnd(initVelocity,angle);
+    var y1 = yAxisQuarter(initVelocity,angle);
+    var y2 = yAxisHalf(initVelocity,angle);
+    var y3 = yAxisThreeQuarters(initVelocity,angle);
+    var y4 = yAxisEnd();
+    var trace1 = {
+  x: [0,x1,x2,x3,x4],
+  y: [0,y1,y2,y3,y4],
+  type: 'scatter',
+};
+
+var data = [trace1];
+var layout = {
+    title:"Responsive to windo's size!",
+    font:{size: 10}
+};
+
+Plotly.newPlot('graph', data,layout, {responsive: true});
+    document.getElementById("initVelocityInput").value = "";
+    document.getElementById("angleInput").value = "";
+    }
     
-    console.log(Math.cosd(30));
-    console.log(`Y axis at quarter time ${yAxisQuarter(98,30)}`);
-    console.log(`X axis at half time ${xAxisHalf(98,30)}`);
-    console.log(`Y axis at half time ${yAxisHalf(98,30)}`);
-    console.log(`X axis at Three quarter time ${xAxisThreeQuarters(98,30)}`);
-    console.log(`Y axis at three quarter time ${yAxisThreeQuarters(98,30)}`);
-    console.log(`X axis end time ${xAxisEnd(98,30)}`);
-    console.log(`Y axis end time ${yAxisEnd()}`)
+    
+    
+    
+    
      
-         // console.log((Math.pow(20,2))*(Math.pow(Math.sind(50),2))/2*9.8);
-         
-      //console.log(((2*20) * Math.sin(50))/9.8);
           
           
       </script>
