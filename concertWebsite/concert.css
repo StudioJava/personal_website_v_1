@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/* CSS Document */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
+/*font-family: 'Source Sans Pro', sans-serif;*/
+
+body {
+    background-image: url(images/photo-1493225457124-a3eb161ffa5f.jpg);
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.jumbotron {
+    height: 80vmin !important;
+    background-color: rgba(0,0,0,0.40);
+    color: white;
+    text-align: center;
+}
