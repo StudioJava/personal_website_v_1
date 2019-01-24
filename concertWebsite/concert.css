@@ -2,8 +2,12 @@
 /* CSS Document */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
 /*font-family: 'Source Sans Pro', sans-serif;*/
+.font1{
+    font-family: 'Source Sans Pro', sans-serif;
+}
 
 body {
+    font-family: 'Source Sans Pro', sans-serif;
     background-image: url(images/photo-1493225457124-a3eb161ffa5f.jpg);
     background-position: center top;
     background-size: cover;
@@ -11,8 +15,59 @@ body {
     background-attachment: fixed;
 }
 .jumbotron {
-    height: 80vmin !important;
+    min-height: 80vmin !important;
     background-color: rgba(0,0,0,0.40);
     color: white;
     text-align: center;
 }
+
+#social_icons {
+    font-size: 22px;
+}
+
+#container_1 h1 {
+    font-size: 80px;
+}
+
+
+#container_1 i:hover {
+    color: rgba(40,185,239,1.00);
+    
+}
+
+#container_1 p {
+    font-weight: 200;
+    letter-spacing: 2px;
+}
+
+#border_top {
+    background-image: url("images/Grunge_black_background-bottom.png");
+    z-index: 2;
+    height: 40px;
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: -35px;
+}
+
+#jumbotron_2 {
+    background-color: black;
+}
+#jumbotron_2 h1{
+    letter-spacing: 5px;
+    
+}
+
+#border_bottom {
+    background-image: url( "images/Grunge_black_background_top.png");
+    z-index: 2;
+    height: 40px;
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: -8px;
+}
+
+
+
+
